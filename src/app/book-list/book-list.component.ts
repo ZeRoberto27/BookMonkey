@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'bm-book-list',
