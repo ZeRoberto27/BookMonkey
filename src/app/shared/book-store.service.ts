@@ -20,6 +20,16 @@ export class BookStoreService {
     return throwError(error);
   }
 
+  getAllSearch(searchTerm: string): Observable<Book[]> {
+    return this.http.get<BookRaw[]>(
+      `${this.api}/books/search/${searchTerm}`
+    ).pipe(
+      retry(3),
+      map(booksRaw => booksRaw.map(b => BookFactory.fromRaw(b))),
+      catchError(this.errorHandler)
+    );
+  }
+
   getAll(): Observable<Book[]> {
     return this.http.get<BookRaw[]>(
       `${this.api}/books`
