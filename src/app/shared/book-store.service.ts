@@ -17,6 +17,7 @@ export class BookStoreService {
 
   private errorHandler(error: HttpErrorResponse): Observable<any> {
     console.error('Fehler aufgetreten!');
+    console.error(error.message);
     return throwError(error);
   }
 
@@ -52,5 +53,15 @@ export class BookStoreService {
 
   remove(isbn: string): Observable<any> {
     return this.http.delete(`${this.api}/book/${isbn}`, { responseType: 'text' });
+  }
+
+  create(book: Book): Observable<any> {
+    return this.http.post(
+      `${this.api}/book`,
+      book,
+      { responseType: 'text' }
+    ).pipe(
+      catchError(this.errorHandler)
+    );
   }
 }
