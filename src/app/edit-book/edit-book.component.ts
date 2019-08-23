@@ -3,6 +3,7 @@ import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bm-edit-book',
@@ -10,7 +11,7 @@ import { switchMap, map } from 'rxjs/operators';
   styleUrls: ['./edit-book.component.css']
 })
 export class EditBookComponent implements OnInit {
-  book: Book;
+  book$: Observable<Book>;
 
   constructor(
     private bs: BookStoreService,
@@ -19,10 +20,10 @@ export class EditBookComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.pipe(
+    this.book$ = this.route.paramMap.pipe(
       map(params => params.get('isbn')),
       switchMap((isbn: string) => this.bs.getSingle(isbn))
-    ).subscribe(book => this.book = book);
+    );
   }
 
   updateBook(book: Book) {

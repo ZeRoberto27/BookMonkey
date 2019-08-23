@@ -7,6 +7,6 @@
     <div class="metadata">
         <span *ngFor="let author of book.authors; last as l">{{ authors }}</span>
         <br>
-        ISBN {{ book.isbn }}
+        ISBN {{ book.isbn | isbn }}
     </div>
 </div>
