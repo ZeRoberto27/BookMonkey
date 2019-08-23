@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BookStoreService } from '../shared/book-store.service';
+import { BookStoreService } from '../../shared/book-store.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Book } from '../shared/book';
+import { Book } from '../../shared/book';
 
 @Component({
   selector: 'bm-create-book',
