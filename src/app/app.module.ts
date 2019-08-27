@@ -21,9 +21,7 @@ import { AdminModule } from './admin/admin.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    BooksModule,
-    AdminModule
+    HttpClientModule
   ],
   providers: [
     {
